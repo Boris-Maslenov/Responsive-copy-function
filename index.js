@@ -24,3 +24,5 @@ const copyHtmlElement = function(breakpoint, copyElementSelector, copyFromSelect
 
     });
 }
+
+//copyHtmlElement(992, '.copy-element', '.product__bar', '.past-element');
