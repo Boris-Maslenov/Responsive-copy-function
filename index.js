@@ -5,7 +5,22 @@ const copyHtmlElement = function(breakpoint, copyElementSelector, copyFromSelect
     let copyEnable = true;
 
     if (document.documentElement.clientWidth < breakpoint) {
-    pastElement.append(copyElement);
-    copyEnable = false;
+        pastElement.append(copyElement);
+        copyEnable = false;
     }
+
+    window.addEventListener('resize', () => {
+        if (document.documentElement.clientWidth < breakpoint) {
+            if (copyEnable) {
+                pastElement.append(copyElement);
+                copyEnable = false;
+            }
+        } else {
+            if (!copyEnable && pastElement.querySelector(copyElementSelector)) {
+                copyFromElement.append(pastElement.querySelector(copyElementSelector));
+                copyEnable = true;
+            }
+        }
+
+    });
 }
